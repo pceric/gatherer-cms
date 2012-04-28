@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<module type="core">
+    <name>Default</name>
+    <author>Eric Hokanson</author>
+    <uri>http://allthingsgeek.com</uri>
+    <license>LGPL3</license>
+    <version>1.0</version>
+    <description>Manages the front page feed display and error messages.</description>
+    <files>
+        <filename>/modules/default/setup.xml</filename>
+        <filename>/modules/default/controllers/ErrorController.php
+        <filename>/modules/default/controllers/IndexController.php
+    </files>
+</module>

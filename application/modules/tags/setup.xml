@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<module type="core">
+    <name>Tags</name>
+    <author>Eric Hokanson</author>
+    <uri>http://allthingsgeek.com</uri>
+    <license>LGPL3</license>
+    <version>1.0</version>
+    <description>Manages the tagging system.</description>
+    <files>
+        <filename>/modules/tags/setup.xml</filename>
+        <filename>/modules/tags/controllers/IndexController.php</filename>
+    </files>
+</module>

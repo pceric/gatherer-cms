@@ -1,0 +1,5 @@
+data/cache/zend_cache*
+data/logs/*.log
+data/lucene
+data/smarty_cache
+data/smarty_compile

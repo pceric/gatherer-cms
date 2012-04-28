@@ -1,0 +1,91 @@
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+ul.unstyled-simple,ol.unstyled-simple {
+    list-style:none;
+}
+
+td {
+    padding:5px 25px;
+}
+
+#content .gfeed h2.title,li.reader {
+    color: #EF9850;
+}
+
+#content .news h2.title,li.news {
+    color: #40BF40;
+}
+
+#content .meta {
+	margin: 0px;
+	padding: 0px 0px 20px 0px;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#content #addthis {
+    padding: 10px 0px 10px 0px;
+}
+
+#archives-link-row {
+    padding: 20px 0 20px 0;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+/* Sidebar */
+#sidebar {
+    padding-left: 10px;
+    border-left: 1px solid #E2E2E2;
+}
+
+#sidebar h2 {
+    color: #555;
+}
+
+#sidebar ul {
+	list-style: none;
+	padding-bottom: 10px;
+}
+
+#sidebar-syndication img {
+    padding: 0px 10px 0px 0px;
+}
+
+#sidebar-posts li {
+	line-height: 25px;
+	border-bottom: 1px dashed #D1D1D1;
+}
+
+#sidebar-archives li {
+	line-height: 25px;
+	border-bottom: 1px dashed #D1D1D1;
+}
+
+/* Footer */
+#footer {
+	height: 50px;
+	margin: 0 auto;
+	padding: 0px 0 15px 0;
+	background: #000;
+	border-top: 1px solid #D3DEF0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#footer p {
+	margin: 0;
+	padding-top: 20px;
+	line-height: normal;
+	font-size: 10px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #FFF;
+}
+
+#footer a {
+    color: #FFF;
+}

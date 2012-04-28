@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<module type="core">
+    <name>News</name>
+    <author>Eric Hokanson</author>
+    <uri>http://allthingsgeek.com</uri>
+    <license>LGPL3</license>
+    <version>1.0</version>
+    <description>Manages the news/blog system.</description>
+    <files>
+        <filename>/modules/news/setup.xml</filename>
+        <filename>/modules/news/controllers/AdminController.php</filename>
+        <filename>/modules/news/controllers/AjaxController.php</filename>
+        <filename>/modules/news/controllers/IndexController.php</filename>
+    </files>
+</module>

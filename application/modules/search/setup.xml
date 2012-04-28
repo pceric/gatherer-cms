@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<module type="core">
+    <name>Search</name>
+    <author>Eric Hokanson</author>
+    <uri>http://allthingsgeek.com</uri>
+    <license>LGPL3</license>
+    <version>1.0</version>
+    <description>Manages the search engine.</description>
+    <files>
+        <filename>/modules/search/setup.xml</filename>
+        <filename>/modules/search/controllers/AjaxController.php</filename>
+    </files>
+</module>

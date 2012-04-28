@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<module type="core">
+    <name>Install</name>
+    <author>Eric Hokanson</author>
+    <uri>http://allthingsgeek.com</uri>
+    <license>LGPL3</license>
+    <version>1.0</version>
+    <description>Install helper for the GCMS.</description>
+    <files>
+        <filename>/modules/install/setup.xml</filename>
+    </files>
+</module>

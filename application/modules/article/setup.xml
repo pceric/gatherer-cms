@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<module type="core">
+    <name>Article</name>
+    <author>Eric Hokanson</author>
+    <uri>http://allthingsgeek.com</uri>
+    <license>LGPL3</license>
+    <version>1.0</version>
+    <description>Manages site articles.</description>
+    <files>
+        <filename>/modules/article/setup.xml</filename>
+        <filename>/modules/article/controllers/AdminController.php
+        <filename>/modules/article/controllers/IndexController.php
+    </files>
+</module>

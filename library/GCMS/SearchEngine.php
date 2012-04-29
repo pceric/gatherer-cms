@@ -70,13 +70,13 @@ class GCMS_SearchEngine
         $doc = new Zend_Search_Lucene_Document();
         
         // Index and store title
-        $doc->addField(Zend_Search_Lucene_Field::Text('title', $title));
+        $doc->addField(Zend_Search_Lucene_Field::Text('title', $title, 'utf-8'));
         // Index document contents
-        $doc->addField(Zend_Search_Lucene_Field::UnStored('contents', strip_tags($content)));
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('contents', strip_tags($content), 'utf-8'));
         // Store timestamp
         $doc->addField(Zend_Search_Lucene_Field::UnIndexed('timestamp', $time));
         // Index tags
-        $doc->addField(Zend_Search_Lucene_Field::UnStored('tags', $tags));
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('tags', $tags, 'utf-8'));
         // Store document URL to identify it in the search results
         $doc->addField(Zend_Search_Lucene_Field::UnIndexed('url', $url));
 

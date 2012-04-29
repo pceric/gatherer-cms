@@ -89,8 +89,8 @@ MCE;
     public function addAction()
     {
 	    if ($this->_getParam('savecontent') != NULL) {
-            $published = $this->_getParam('published')==null?0:1
-            $menu = $this->_getParam('menu')==null?0:1
+            $published = $this->_getParam('published')==null?0:1;
+            $menu = $this->_getParam('menu')==null?0:1;
                 
             // Save new data
             $data = array('title' => $_POST['title'],
@@ -142,8 +142,8 @@ MCE;
 
         // Save
 	    if ($this->_getParam('savecontent') != NULL) {
-            $published = $this->_getParam('published')==null?0:1
-            $menu = $this->_getParam('menu')==null?0:1
+            $published = $this->_getParam('published')==null?0:1;
+            $menu = $this->_getParam('menu')==null?0:1;
             
             $old = $this->_db->fetchRow("SELECT content,comments,moddate FROM articles WHERE id = " . $this->_db->quote($this->_getParam('id')));
             if ($old['content'] != $this->_getParam('content'))

@@ -98,7 +98,7 @@ MCE;
                           'tags' => $_POST['tags'],
                           'published' => $published,
                           'pubdate' => new Zend_Db_Expr('NOW()'));
-            $data['sticky'] = $this->_getParam('sticky')==null?0:1
+            $data['sticky'] = $this->_getParam('sticky')==null?0:1;
             $this->_db->insert('news', $data);
             $this->_setParam('id', $this->_db->lastInsertId());
             $needsIntro = true;

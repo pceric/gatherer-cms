@@ -9,14 +9,18 @@ class Admin_IndexController extends Zend_Controller_Action
 {
     public function preDispatch()
     {
-        // Check to see if we have logged in
-        if (!Zend_Registry::get('acl')->isAllowed('admin'))
-            $this->_forward('login');
-        
         // cancel catch-all
         if ($this->_getParam('cancel') != NULL) {
             $this->_redirect('admin');
         }
+    }
+
+    public function init()
+    {
+        // Check to see if we have logged in
+        // NOTE: normally this would go in preDispatch but forwarding to itself causes an infinite loop
+        if (!Zend_Registry::get('acl')->isAllowed('admin'))
+            $this->_forward('login');
     }
     
     public function chgpassAction()

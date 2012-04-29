@@ -16,8 +16,8 @@
 	    {/if}
     </div>
 	<div class="meta">
-		<p class="links">{'Tags'|translate}: {$data.tags|tagify}{if $gcms.isAdmin == true && $data.type != 'reader'} | <a href="{$view->url(['module' => 'news', 'controller' => 'admin', 'action' => 'edit', 'type' => 'news', 'id' => {$data.id}])}">{'Edit'|translate}</a>{/if}</p>
+		<p class="links">{'Tags'|translate}: {$data.tags|tagify}{if $data.type != 'reader' && $data.comments != 0} | {include file="disqus_count.tpl" disqus_identifier="news_{$data.id}"}{/if}{if $gcms.isAdmin == true && $data.type != 'reader'} | <a href="{$view->url(['module' => 'news', 'controller' => 'admin', 'action' => 'edit', 'type' => 'news', 'id' => {$data.id}])}">{'Edit'|translate}</a>{/if}</p>
 	</div>
 </div>
-{if $data.type != 'reader' && $data.comments == 1}{include file="disqus.tpl" disqus_identifier="news_{$data.id}"}{/if}
+{if $data.type != 'reader' && $data.comments != 0}{include file="disqus.tpl" disqus_identifier="news_{$data.id}"}{/if}
 {/nocache}

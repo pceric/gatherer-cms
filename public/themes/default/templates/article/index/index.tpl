@@ -35,8 +35,8 @@
   </tr>
   </table>
   <div class="meta">
-    <p class="links">{'Tags'|translate}: {$data.tags|tagify}{if $data.comments.tid != 0} | <a href="{$gcms_phpbb_url}/viewtopic.php?f={$data.comments.fid}&amp;t={$data.comments.tid}">{$data.comments.count} {'Comments'|translate}</a>{/if}{if $gcms.isAdmin == true} | <a href="{$view->url(['module' => 'article', 'controller' => 'admin', 'action' => 'edit', 'id' => $data.id],null,true)}">{'Edit'|translate}</a>{/if}</p>
+    <p class="links">{'Tags'|translate}: {$data.tags|tagify}{if $data.comments != 0} | {include file="disqus_count.tpl" disqus_identifier="article_{$data.id}"}{/if}{if $gcms.isAdmin == true} | <a href="{$view->url(['module' => 'article', 'controller' => 'admin', 'action' => 'edit', 'id' => $data.id],null,true)}">{'Edit'|translate}</a>{/if}</p>
   </div>
 </div>
-{if $data.comments == 1}{include file="disqus.tpl" disqus_identifier="article_{$data.id}"}{/if}
+{if $data.comments != 0}{include file="disqus.tpl" disqus_identifier="article_{$data.id}"}{/if}
 {/nocache}

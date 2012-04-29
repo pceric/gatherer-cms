@@ -90,10 +90,7 @@ MCE;
     {
         // Save data
 	    if ($this->_getParam('savecontent') != NULL) {
-            if ($this->_getParam('published'))
-                $published = 1;
-            else
-                $published = 0;
+            $published = $this->_getParam('published')==null?0:1;
                 
             // Save new data
             $data = array('title' => $_POST['title'],
@@ -101,10 +98,7 @@ MCE;
                           'tags' => $_POST['tags'],
                           'published' => $published,
                           'pubdate' => new Zend_Db_Expr('NOW()'));
-            if (isset($_POST['sticky']))
-                $data['sticky'] = 1;
-            else
-                $data['sticky'] = 0;
+            $data['sticky'] = $this->_getParam('sticky')==null?0:1
             $this->_db->insert('news', $data);
             $this->_setParam('id', $this->_db->lastInsertId());
             $needsIntro = true;
@@ -147,7 +141,7 @@ MCE;
 
         $this->view->headTitle('Edit News');
         
-        if ($this->_getParam('savecontent') != NULL && $this->_request->getActionName() == 'edit') {
+        if ($this->_getParam('savecontent') != NULL) {
             // Did we update the content?
             $old = $this->_db->fetchRow("SELECT content,comments,moddate FROM news WHERE id = " . $this->_db->quote($this->_getParam('id')));
             if ($old['content'] != $this->_getParam('content'))

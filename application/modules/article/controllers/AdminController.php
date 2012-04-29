@@ -89,19 +89,14 @@ MCE;
     public function addAction()
     {
 	    if ($this->_getParam('savecontent') != NULL) {
-            if ($this->_getParam('published'))
-                $published = 1;
-            else
-                $published = 0;
-            if ($this->_getParam('menu'))
-                $menu = 1;
-            else
-                $menu = 0;
+            $published = $this->_getParam('published')==null?0:1
+            $menu = $this->_getParam('menu')==null?0:1
                 
             // Save new data
             $data = array('title' => $_POST['title'],
                           'content' => $_POST['content'],
                           'tags' => $_POST['tags'],
+                          'comments' => $this->_getParam('comments')==null?0:1,
                           'published' => $published,
                           'pubdate' => new Zend_Db_Expr('NOW()'));
             $this->_db->insert('articles', $data);
@@ -147,14 +142,9 @@ MCE;
 
         // Save
 	    if ($this->_getParam('savecontent') != NULL) {
-            if ($this->_getParam('published'))
-                $published = 1;
-            else
-                $published = 0;
-            if ($this->_getParam('menu'))
-                $menu = 1;
-            else
-                $menu = 0;
+            $published = $this->_getParam('published')==null?0:1
+            $menu = $this->_getParam('menu')==null?0:1
+            
             $old = $this->_db->fetchRow("SELECT content,comments,moddate FROM articles WHERE id = " . $this->_db->quote($this->_getParam('id')));
             if ($old['content'] != $this->_getParam('content'))
                 $moddate = new Zend_Db_Expr('NOW()');
@@ -178,7 +168,7 @@ MCE;
             $data = array('title' => $this->_getParam('title'),
                         'content' => $this->_getParam('content'),
                         'tags' => $this->_getParam('tags'),
-                        'comments' => $old['comments'],
+                        'comments' => $this->_getParam('comments')==null?0:1,
                         'published' => $published,
                         'moddate' => $moddate);
             $this->_db->update('articles', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));

@@ -29,7 +29,7 @@ class Contact_IndexController extends Zend_Controller_Action
         
         // Init captcha engine
         if (!empty($cfg['republickey']) && !empty($cfg['reprivatekey'])) {
-            $captcha = new Zend_Form_Element_Captcha('captcha', array('captcha' => array('captcha' => 'ReCaptcha', 'PrivKey' => $cfg['privatekey'], 'PubKey' => $cfg['publickey'])));
+            $captcha = new Zend_Form_Element_Captcha('captcha', array('captcha' => array('captcha' => 'ReCaptcha', 'PrivKey' => $cfg['reprivatekey'], 'PubKey' => $cfg['republickey'])));
         } else {
             $captcha = new Zend_Form_Element_Captcha('captcha', array('captcha' => array('captcha' => 'Dumb', 'wordLen' => 6)));
         }
@@ -42,8 +42,8 @@ class Contact_IndexController extends Zend_Controller_Action
             if (!isset($this->_token->id) || sha1($this->_token->id) != $this->_getParam('token'))
                 throw new Exception("Bad token.  Please check that cookies are enabled for this site.");
             if ($captcha->isValid($_POST) && $validator->isValid($_POST['email'])) {
-                mail($cfg['sitecontact'], $_REQUEST['subject'], $_REQUEST['message'], "From: " . $_REQUEST['email'] . "\r\n") or die("Mail configuration error.\n");
-                Zend_Registry::get('log')->log('Mail sent from ' . $_REQUEST['email'] . ' with IP ' . $_SERVER['REMOTE_ADDR'], Zend_Log::NOTICE);
+                mail($cfg['sitecontact'], $_REQUEST['subject'], $_REQUEST['message'], "From: " . $_POST['email'] . "\r\n") or die("Mail configuration error.\n");
+                Zend_Registry::get('log')->log('Mail sent from ' . $_POST['email'] . ' with IP ' . $_SERVER['REMOTE_ADDR'], Zend_Log::NOTICE);
                 $this->render('thanks');
             }
         }

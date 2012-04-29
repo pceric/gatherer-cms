@@ -15,8 +15,8 @@
 <tr><td>Site Keywords</td><td><input type="text" name="sitekeywords" value="{$gcms.config.sitekeywords}" size="64" maxlength="128" /></td></tr>
 <tr><td>Theme</td><td><select name="sitetheme">
 {foreach from=$themelist item=v}
-	{if is_dir("./themes/$v") && preg_match('/^([A-Z]|[a-z]|_)/',$v)}
-		<option value="{$v}"{if $v eq $gcms.config.sitetheme} selected="selected"{/if}>{$v}</option>
+    {if is_dir("./themes/$v") && preg_match('/^([A-Z]|[a-z]|_)/',$v)}
+        <option value="{$v}"{if $v eq $gcms.config.sitetheme} selected="selected"{/if}>{$v}</option>
     {/if}
 {/foreach}
 </select></td></tr>
@@ -60,8 +60,8 @@
 *}
 <tr><td colspan="2"><hr /></td></tr>
 <tr><td colspan="2"><h4>reCAPTCHA</h4>To use reCAPTCHA you must register for a free key set at <a href="http://www.google.com/recaptcha" target="_blank">Google</a>.</td></tr>
-<tr><td>Public Key</td><td><input type="text" name="publickey" value="{$gcms.config.publickey}" class="input-xlarge"></td></tr>
-<tr><td>Private Key</td><td><input type="text" name="privatekey" value="{$gcms.config.privatekey}" class="input-xlarge"></td></tr>
+<tr><td>Public Key</td><td><input type="text" name="publickey" value="{$gcms.config.republickey}" class="input-xlarge"></td></tr>
+<tr><td>Private Key</td><td><input type="text" name="privatekey" value="{$gcms.config.reprivatekey}" class="input-xlarge"></td></tr>
 <tr><td colspan="2"><hr /></td></tr>
 <tr><td colspan="2"><input type="submit" name="configsubmit" value="Save" class="btn" /> <input type="submit" name="cancel" value="Cancel" class="btn" /></td></tr>
 </table>

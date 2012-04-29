@@ -17,10 +17,10 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="{$view->baseUrl()}">{$gcms.config.sitename}</a>
+          <a class="brand" href="{$view->url(['module' => 'default'],null,true)}">{$gcms.config.sitename}</a>
           <ul class="nav">
-            <li{if $gcms.param.module == 'default'} class="active"{/if}><a href="{$view->baseUrl()}">Home</a></li>
-			<li{if $gcms.param.module == 'archives'} class="active"{/if}><a href="{$view->url(['module' => 'archives'],null,true)}">Archives</a></li>
+            <li{if $gcms.param.module == 'default'} class="active"{/if}><a href="{$view->url(['module' => 'default'],null,true)}">Home</a></li>
+            <li{if $gcms.param.module == 'archives'} class="active"{/if}><a href="{$view->url(['module' => 'archives'],null,true)}">Archives</a></li>
             <li{if $gcms.param.module == 'article' && $gcms.param.id|default:0 == 1} class="active"{/if}><a href="{$view->url(['module' => 'article', 'id' => 1],null,true)}">About</a></li>
             <li{if $gcms.param.module == 'contact'} class="active"{/if}><a href="{$view->url(['module' => 'contact'],null,true)}">Contact</a></li>
           </ul>
@@ -70,7 +70,7 @@
       </div>
     </div> <!-- /container -->
     <div class="row">
-	  <div id="footer">{include file="footer.tpl"}</div>
+      <div id="footer">{include file="footer.tpl"}</div>
     </div>
     </body>
 </html>

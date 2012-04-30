@@ -146,7 +146,7 @@ MCE;
             $menu = $this->_getParam('menu')==null?0:1;
             
             // Did we touch the content?
-            $old = $this->_db->fetchRow("SELECT content,comments,moddate FROM articles WHERE id = " . $this->_db->quote($this->_getParam('id')));
+            $old = $this->_db->fetchRow("SELECT content,comments,published,moddate FROM articles WHERE id = " . $this->_db->quote($this->_getParam('id')));
             if ($old['content'] != $this->_getParam('content'))
                 $moddate = new Zend_Db_Expr('NOW()');
             else
@@ -175,7 +175,7 @@ MCE;
             $this->_db->update('articles', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
             
             // Rebuild lucene index if the content changed
-            if ($moddate != $old['moddate'])
+            if ($published != $old['published'] || ($published && $moddate != $old['moddate']))
                 $this->_search->rebuildIndex();
             
             $count = $this->_db->fetchOne("SELECT COUNT(*) FROM menu WHERE parent = 2 AND link = '" . serialize(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'params' => array('id' => (int)$this->_getParam('id')))) . "'");

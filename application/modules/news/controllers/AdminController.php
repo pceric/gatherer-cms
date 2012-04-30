@@ -173,7 +173,7 @@ MCE;
             $this->_db->update('news', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
 
             // Reindex lucene
-            if ($moddate != $old['moddate'])
+            if ($published != $old['published'] || ($published && $moddate != $old['moddate']))
                 $this->_search->rebuildIndex();
             
             //$this->_request->clearParams();

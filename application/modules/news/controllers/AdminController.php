@@ -173,7 +173,8 @@ MCE;
             $this->_db->update('news', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
 
             // Reindex lucene
-            $this->_search->rebuildIndex();
+            if ($moddate != $old['moddate'])
+                $this->_search->rebuildIndex();
             
             //$this->_request->clearParams();
             $this->_setParam('msg', '<div class="alert alert-success">' . Zend_Registry::get('Zend_Translate')->_('Post edited successfully') . '</div>');

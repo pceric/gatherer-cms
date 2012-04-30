@@ -59,6 +59,10 @@ class Admin_IndexController extends Zend_Controller_Action
             $cfg->write('siteslogan', $_POST['siteslogan']);
             $cfg->write('sitetheme', $_POST['sitetheme']);
             $cfg->write('editor', $_POST['editor']);
+            $cfg->write('engine', $_POST['import_engine']);
+            $cfg->write('plusapikey', $_POST['plusapikey']);
+            $cfg->write('plusid', $_POST['plusid']);
+            $cfg->write('plusmyposts', $_POST['plusmyposts']);
             $cfg->write('googlefeed', urldecode($_POST['googlefeed']));
             $cfg->write('imagedir', $_POST['imagedir']);
             $cfg->write('filedir', $_POST['filedir']);

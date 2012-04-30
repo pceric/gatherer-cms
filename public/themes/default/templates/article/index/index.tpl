@@ -35,7 +35,7 @@
   </tr>
   </table>
   <div class="meta">
-    <p class="links">{'Tags'|translate}: {$data.tags|tagify}{if $data.comments != 0} | {include file="disqus_count.tpl" disqus_identifier="article_{$data.id}"}{/if}{if $gcms.isAdmin == true} | <a href="{$view->url(['module' => 'article', 'controller' => 'admin', 'action' => 'edit', 'id' => $data.id],null,true)}">{'Edit'|translate}</a>{/if}</p>
+    <p class="links">{'Tags'|translate}: {$data.tags|tagify}{if $gcms.isAdmin == true} | <a href="{$view->url(['module' => 'article', 'controller' => 'admin', 'action' => 'edit', 'id' => $data.id],null,true)}">{'Edit'|translate}</a>{/if}</p>
   </div>
 </div>
 {if $data.comments != 0}{include file="disqus.tpl" disqus_identifier="article_{$data.id}"}{/if}

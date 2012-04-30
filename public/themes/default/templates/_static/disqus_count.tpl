@@ -2,7 +2,6 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = '{$gcms.config.disqus_shortname|default:'example'}';
-    var disqus_identifier = '{$disqus_identifier|default:'' nocache}';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function () {

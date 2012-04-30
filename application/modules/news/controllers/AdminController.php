@@ -143,7 +143,7 @@ MCE;
         
         if ($this->_getParam('savecontent') != NULL) {
             // Did we update the content?
-            $old = $this->_db->fetchRow("SELECT content,comments,moddate FROM news WHERE id = " . $this->_db->quote($this->_getParam('id')));
+            $old = $this->_db->fetchRow("SELECT content,comments,published,moddate FROM news WHERE id = " . $this->_db->quote($this->_getParam('id')));
             if ($old['content'] != $this->_getParam('content'))
                 $moddate = new Zend_Db_Expr('NOW()');
             else
@@ -173,7 +173,7 @@ MCE;
             $this->_db->update('news', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
 
             // Reindex lucene
-            if ($published != $old['published'] || ($published && $moddate != $old['moddate']))
+            if ($this->_getParam('published') != $old['published'] || ($this->_getParam('published') == 1 && ($moddate != $old['moddate'])))
                 $this->_search->rebuildIndex();
             
             //$this->_request->clearParams();

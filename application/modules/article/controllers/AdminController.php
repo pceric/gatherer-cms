@@ -175,7 +175,7 @@ MCE;
             $this->_db->update('articles', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
             
             // Rebuild lucene index if the content changed
-            if ($published != $old['published'] || ($published && $moddate != $old['moddate']))
+            if ($published != $old['published'] || ($published && ($moddate != $old['moddate'])))
                 $this->_search->rebuildIndex();
             
             $count = $this->_db->fetchOne("SELECT COUNT(*) FROM menu WHERE parent = 2 AND link = '" . serialize(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'params' => array('id' => (int)$this->_getParam('id')))) . "'");

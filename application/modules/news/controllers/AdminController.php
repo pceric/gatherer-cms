@@ -96,6 +96,7 @@ MCE;
             $data = array('title' => $_POST['title'],
                           'content' => $_POST['content'],
                           'tags' => $_POST['tags'],
+                          'comments' => $this->_getParam('comments')==null?0:1,
                           'published' => $published,
                           'pubdate' => new Zend_Db_Expr('NOW()'));
             $data['sticky'] = $this->_getParam('sticky')==null?0:1;

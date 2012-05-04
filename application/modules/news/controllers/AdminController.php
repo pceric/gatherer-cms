@@ -128,10 +128,12 @@ MCE;
 
     public function deleteAction()
     {
-        $this->_db->delete('news', 'id = ' . $this->_db->quote($this->_getParam('id')));
-        $this->_search->rebuildIndex();
-        //$this->_request->clearParams();
-        $this->_setParam('msg', '<div class="alert alert-success">' . Zend_Registry::get('Zend_Translate')->_('Post deleted successfully') . '</div');
+        if ($this->_getParam('id') != NULL) {
+            $this->_db->delete('news', 'id = ' . $this->_db->quote($this->_getParam('id')));
+            $this->_search->deleteItem($this->view->url(array('module' => 'news', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
+            //$this->_request->clearParams();
+            $this->_setParam('msg', '<div class="alert alert-success">' . Zend_Registry::get('Zend_Translate')->_('Post deleted successfully') . '</div>');
+        }
         $this->_forward('index');
     }
     

@@ -22,7 +22,7 @@ class Search_AjaxController extends Zend_Controller_Action
         $engine = GCMS_SearchEngine::getInstance();
         if ($this->_getParam('query') != null) {
             try {
-                $results = $engine->search(rawurldecode($this->_getParam('query')));
+                $results = $engine->find(rawurldecode($this->_getParam('query')));
                 foreach ($results as $v) {
                     $json_array[] = array('id' => $v->id, 'title' => $v->title, 'url' => $v->url, 'timestamp' => $v->timestamp, 'score' => $v->score);   
                 }

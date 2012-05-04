@@ -105,7 +105,7 @@ MCE;
             
             // Add to lucene
             if ($published)
-                $this->_search->addItem($data['title'], $data['content'], time(), $data['tags'], $view->url(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true)); 
+                $this->_search->addItem($data['title'], $data['content'], time(), $data['tags'], $this->view->url(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true)); 
 
             /* Create a new phpBB topic
             if (isset($phpbb) && isset($needsIntro)) {
@@ -130,8 +130,11 @@ MCE;
 
     public function deleteAction()
     {
-		$this->_db->delete('article', 'id = ' . $this->_db->quote($this->_getParam('id')));
-        $this->_search->rebuildIndex();
+        if ($this->_getParam('id') != NULL) {
+		    $this->_db->delete('articles', 'id = ' . $this->_db->quote($this->_getParam('id')));
+            $this->_db->delete('menu', "link = '" . serialize(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'params' => array('id' => (int)$this->_getParam('id')))) . "'");
+            $this->_search->deleteItem($this->view->url(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
+        }
         $this->_forward('index');
     }
     

@@ -78,7 +78,7 @@ class GCMS_SearchEngine
         // Index tags
         $doc->addField(Zend_Search_Lucene_Field::UnStored('tags', $tags, 'utf-8'));
         // Store document URL to identify it in the search results
-        $doc->addField(Zend_Search_Lucene_Field::UnIndexed('url', $url));
+        $doc->addField(Zend_Search_Lucene_Field::Keyword('url', $url));
 
         $this->_index->addDocument($doc);
     }
@@ -87,13 +87,17 @@ class GCMS_SearchEngine
      * Deletes an item from our lucene db
      *
      * @param string $url Url of record to delete
+     * @return int Number of records deleted
      */
     public function deleteItem($url) {
+        $count = 0;
         $hits = $this->_index->find('url:' . $url);
         foreach ($hits as $hit) {
             $this->_index->delete($hit->id);
+            $count++;
         }
         $this->_index->commit();
+        return $count;
     }
     
     /**

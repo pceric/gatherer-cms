@@ -37,7 +37,7 @@ var MooGCMS = new Class({
                     var ul = new Element('ul', { 'class': 'search-results' });
                     $('content').grab(ul);
                     Object.each(results, function(v){
-                        new Element('li', { html: '<h3><a href="' v["url"] + '">' + v["title"] + '</a></h3><div><cite>' + v["url"] + ' - ' + new Date(v["timestamp"] * 1000).format('%x') + '</cite></div>'}).inject(ul);
+                        new Element('li', { html: '<h3><a href="' + v["url"] + '">' + v["title"] + '</a></h3><div><cite>' + v["url"] + ' - ' + new Date(v["timestamp"] * 1000).format('%x') + '</cite></div>'}).inject(ul);
                     });
                 } else {
                     $('content').grab(new Element('h3', { text: 'Sorry, no results.' }));

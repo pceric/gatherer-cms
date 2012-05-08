@@ -24,7 +24,7 @@
             <li{if $gcms.param.module == 'article' && $gcms.param.id|default:0 == 1} class="active"{/if}><a href="{$view->url(['module' => 'article', 'id' => 1],null,true)}">About</a></li>
             <li{if $gcms.param.module == 'contact'} class="active"{/if}><a href="{$view->url(['module' => 'contact'],null,true)}">Contact</a></li>
           </ul>
-          {if $gcms.isAdmin}<ul class="nav pull-right"><li><a href="{$view->url(['module' => 'admin'],null,true)}">Admin</a></li></ul>{/if}
+          {if $gcms.isAdmin nocache}<ul class="nav pull-right"><li><a href="{$view->url(['module' => 'admin'],null,true)}">Admin</a></li></ul>{/if}
         </div>
       </div>
     </div>

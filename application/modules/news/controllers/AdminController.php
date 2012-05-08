@@ -145,6 +145,8 @@ MCE;
         $this->view->headTitle('Edit News');
         
         if ($this->_getParam('savecontent') != NULL) {
+            $published = $this->_getParam('published')==null?0:1;
+
             // Did we update the content?
             $old = $this->_db->fetchRow("SELECT content,comments,published,moddate FROM news WHERE id = " . $this->_db->quote($this->_getParam('id')));
             if ($old['content'] != $this->_getParam('content'))
@@ -171,13 +173,18 @@ MCE;
                         'tags' => $this->_getParam('tags'),
                         'comments' => $this->_getParam('comments')==null?0:1,
                         'sticky' => $this->_getParam('sticky')==null?0:1,
-                        'published' => $this->_getParam('published')==null?0:1,
+                        'published' => $published,
                         'moddate' => $moddate);
             $this->_db->update('news', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
 
-            // Reindex lucene
-            if ($this->_getParam('published') != $old['published'] || ($this->_getParam('published') == 1 && ($moddate != $old['moddate'])))
-                $this->_search->rebuildIndex();
+            // Update lucene index if the content changed
+            if (!$published) {
+                $this->_search->deleteItem($this->view->url(array('module' => 'news', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
+            } else if ($published != $old['published']) {
+                $this->_search->addItem($data['title'], $data['content'], time(), $data['tags'], $this->view->url(array('module' => 'news', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
+            } else {
+                $this->_search->updateItem($data['title'], $data['content'], time(), $data['tags'], $this->view->url(array('module' => 'news', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
+            }
             
             //$this->_request->clearParams();
             $this->_setParam('msg', '<div class="alert alert-success">' . Zend_Registry::get('Zend_Translate')->_('Post edited successfully') . '</div>');

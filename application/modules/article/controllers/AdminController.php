@@ -177,9 +177,14 @@ MCE;
                         'moddate' => $moddate);
             $this->_db->update('articles', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
             
-            // Rebuild lucene index if the content changed
-            if ($published != $old['published'] || ($published && ($moddate != $old['moddate'])))
-                $this->_search->rebuildIndex();
+            // Update lucene index if the content changed
+            if (!$published) {
+                $this->_search->deleteItem($this->view->url(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
+            } else if ($published != $old['published']) {
+                $this->_search->addItem($data['title'], $data['content'], time(), $data['tags'], $this->view->url(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
+            } else {
+                $this->_search->updateItem($data['title'], $data['content'], time(), $data['tags'], $this->view->url(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
+            }
             
             $count = $this->_db->fetchOne("SELECT COUNT(*) FROM menu WHERE parent = 2 AND link = '" . serialize(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'params' => array('id' => (int)$this->_getParam('id')))) . "'");
             

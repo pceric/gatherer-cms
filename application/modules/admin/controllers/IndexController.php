@@ -138,6 +138,7 @@ class Admin_IndexController extends Zend_Controller_Action
         Zend_Registry::get('acl')->deny('admin');
         Zend_Session::namespaceUnset('gcmsauth');
         Zend_Session::writeClose();
+        Zend_Session::regenerateId();
         $this->view->assign('gcms.isAdmin', false);
         //$this->_redirect('admin');
     }

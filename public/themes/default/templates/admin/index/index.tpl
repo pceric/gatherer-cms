@@ -1,3 +1,4 @@
+{nocache}
 {if isset($msg)}
 <div class="alert alert-{$alert}">
 {if $msg == 'pass'}
@@ -25,3 +26,4 @@
   </ul>
 {/foreach}
 </div>
+{/nocache}

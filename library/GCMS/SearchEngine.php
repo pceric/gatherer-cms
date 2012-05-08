@@ -32,6 +32,7 @@ class GCMS_SearchEngine
      */
     public function rebuildIndex() {
         $db = Zend_Registry::get('db');
+        $view = Zend_Registry::get('view');
         $zd = new Zend_Date();
 
         // First delete all records
@@ -47,15 +48,14 @@ class GCMS_SearchEngine
 
         // Now insert all records
         foreach ($pages as $v) {
+            $view_array = array('module' => $v['module'], 'controller' => 'index', 'action' => 'index', 'id' => $v['id']);
             if (isset($v['moddate']))
                 $time = $zd->set($v['moddate'])->get();
             else
                 $time = $zd->set($v['pubdate'])->get();
             if (isset($v['type']))
-                $type = '/type/' . $v['type'];
-            else
-                $type = '';
-            $this->addItem($v['title'], $v['content'], $time, $v['tags'], $v['module'] . '/index/index/id/' . $v['id'] . $type);
+                $view_array['type'] = $v['type'];
+            $this->addItem($v['title'], $v['content'], $time, $v['tags'], $view->url($view_array,null,true));
         }
     }
 

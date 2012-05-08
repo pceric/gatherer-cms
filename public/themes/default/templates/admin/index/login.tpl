@@ -1,3 +1,4 @@
+{nocache}
 {if !empty($error_msg)}<div class="alert alert-block alert-error">{$error_msg}</div>{/if}
 <form action="{$smarty.server.REQUEST_URI}" method="post" class="form-horizontal">
   <fieldset>
@@ -14,3 +15,4 @@
     </div>
   </fieldset>
 </form>
+{/nocache}

@@ -50,9 +50,9 @@ class GCMS_SearchEngine
         foreach ($pages as $v) {
             $view_array = array('module' => $v['module'], 'controller' => 'index', 'action' => 'index', 'id' => $v['id']);
             if (isset($v['moddate']))
-                $time = $zd->set($v['moddate'])->get();
+                $time = $zd->set($v['moddate'], Zend_Date::ISO_8601)->get();
             else
-                $time = $zd->set($v['pubdate'])->get();
+                $time = $zd->set($v['pubdate'], Zend_Date::ISO_8601)->get();
             if (isset($v['type']))
                 $view_array['type'] = $v['type'];
             $this->addItem($v['title'], $v['content'], $time, $v['tags'], $view->url($view_array,null,true));

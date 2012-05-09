@@ -166,11 +166,8 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $authNamespace = new Zend_Session_Namespace('gcmsadmin');
-        $this->view->assign('gcms_isadmin', $authNamespace->admin);
-
-        if (!empty($this->_config['forumdir']))
-            $phpbb = new Zend_PHPBB3($config['forumdir']);
+        //if (!empty($this->_config['forumdir']))
+            //$phpbb = new Zend_PHPBB3($config['forumdir']);
         $sticky = array();
         $feed = array();
         // First fetch our sticky posts
@@ -184,8 +181,8 @@ class IndexController extends Zend_Controller_Action
         }
         $this->view->assign('sticky', $sticky);
         // Union our regular news posts and RSS feeds
-        $rs = $this->_db->query("(SELECT id,title,content,NULL as source,pubdate,tags,comments,NULL as annotation,'news' as type FROM news WHERE sticky = 0 AND published = 1)
-                           UNION (SELECT id,title,summary as content,source,pubdate,tags,NULL as comments,annotation,'reader' as type FROM reader) ORDER BY pubdate DESC LIMIT 5");
+        $rs = $this->_db->query("(SELECT id,title,content,NULL as source,pubdate,moddate,tags,comments,NULL as annotation,'news' as type FROM news WHERE sticky = 0 AND published = 1)
+                           UNION (SELECT id,title,summary as content,source,pubdate,NULL as moddate,tags,NULL as comments,annotation,'reader' as type FROM reader) ORDER BY pubdate DESC LIMIT 5");
         while ($row = $rs->fetch()) {
             if ($row['type'] == 'reader') {
                 $source = parse_url($row['source'], PHP_URL_HOST);
@@ -194,7 +191,7 @@ class IndexController extends Zend_Controller_Action
             } else {
                 if (isset($phpbb) && $phpbb->get_approved($row['comments']))
                     $row['comments'] = array('fid' => $this->_config['forumid'], 'tid' => $row['comments'], 'count' => $phpbb->get_count($row['comments']));
-                $feed[] = array("id" => $row['id'], "title" => $row['title'], "content" => $row['content'], "pubdate" => $row['pubdate'], "tags" => $row['tags'], "type" => $row['type'], "comments" => $row['comments']);
+                $feed[] = array("id" => $row['id'], "title" => $row['title'], "content" => $row['content'], "pubdate" => $row['pubdate'], "moddate" => $row['moddate'], "tags" => $row['tags'], "type" => $row['type'], "comments" => $row['comments']);
             }
         }
         $this->view->assign('feed', $feed);           

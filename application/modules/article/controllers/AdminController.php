@@ -38,7 +38,7 @@ class Article_AdminController extends Zend_Controller_Action
             $headers->headScript()->captureStart();
             echo <<<CONFIG
             window.addEvent('domready', function() {
-                popTopic($('phpbbpath').value, $config[forumid]);			
+                popTopic($('phpbbpath').value, $config[forumid]);           
             });
 CONFIG;
             $headers->headScript()->captureEnd();
@@ -82,23 +82,26 @@ MCE;
     {
         $cfg = Zend_Registry::get('config');
         $this->view->headTitle('Manage Articles');
-		$data = $this->_db->fetchAll("SELECT * FROM articles ORDER BY pubdate DESC");
-		$this->view->assign('data', $data);
+        $data = $this->_db->fetchAll("SELECT * FROM articles ORDER BY pubdate DESC");
+        //$paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Array(array()));
+        //$this->view->paginator = $paginator;
+        //$this->view->assign('page', $paginator->getPages());
+        $this->view->assign('data', $data);
     }
 
     public function addAction()
     {
-	    if ($this->_getParam('savecontent') != NULL) {
+        if ($this->_getParam('savecontent') != NULL) {
             $published = $this->_getParam('published')==null?0:1;
             $menu = $this->_getParam('menu')==null?0:1;
                 
             // Save new data
-            $data = array('title' => $_POST['title'],
-                          'content' => $_POST['content'],
-                          'tags' => $_POST['tags'],
+            $data = array('title' => $this->_getParam('title'),
+                          'content' => $this->_getParam('content'),
+                          'tags' => $this->_getParam('tags'),
                           'comments' => $this->_getParam('comments')==null?0:1,
                           'published' => $published,
-                          'pubdate' => new Zend_Db_Expr('NOW()'));
+                          'pubdate' => strlen($this->_getParam('pubdate',''))>0?$this->_getParam('pubdate'):new Zend_Db_Expr('NOW()'));
             $this->_db->insert('articles', $data);
             $this->_setParam('id', $this->_db->lastInsertId());
             $needsIntro = true;
@@ -112,7 +115,7 @@ MCE;
                 $url = $GLOBALS['config']['siteURL'] . '?mod=' . $_GET['type'] . '&amp;id=' . $_POST['id'];
                 $intro = str_replace(array("%t", "%u", "%c"), array($_POST['title'], $url, $_POST['content']), $GLOBALS['config']['threadintro']);
                 $topic_id = $phpbb->create_topic($_POST['title'], $intro, $GLOBALS['config']['forumid']);
-                $_db->update($table, array('comments' => $topic_id), 'id = ' . $_POST['id']);	
+                $_db->update($table, array('comments' => $topic_id), 'id = ' . $_POST['id']);   
             }
             */
             
@@ -131,7 +134,7 @@ MCE;
     public function deleteAction()
     {
         if ($this->_getParam('id') != NULL) {
-		    $this->_db->delete('articles', 'id = ' . $this->_db->quote($this->_getParam('id')));
+            $this->_db->delete('articles', 'id = ' . $this->_db->quote($this->_getParam('id')));
             $this->_db->delete('menu', "link = '" . serialize(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'params' => array('id' => (int)$this->_getParam('id')))) . "'");
             $this->_search->deleteItem($this->view->url(array('module' => 'article', 'controller' => 'index', 'action' => 'index', 'id' => $this->_getParam('id')), null, true));
         }
@@ -144,7 +147,7 @@ MCE;
             throw new Zend_Controller_Dispatcher_Exception("Missing article ID.");
 
         // Save
-	    if ($this->_getParam('savecontent') != NULL) {
+        if ($this->_getParam('savecontent') != NULL) {
             $published = $this->_getParam('published')==null?0:1;
             $menu = $this->_getParam('menu')==null?0:1;
             
@@ -174,6 +177,7 @@ MCE;
                         'tags' => $this->_getParam('tags'),
                         'comments' => $this->_getParam('comments')==null?0:1,
                         'published' => $published,
+                        'pubdate' => $this->_getParam('pubdate'),
                         'moddate' => $moddate);
             $this->_db->update('articles', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
             

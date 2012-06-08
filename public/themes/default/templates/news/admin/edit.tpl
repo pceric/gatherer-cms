@@ -40,7 +40,7 @@
     <div class="control-group">
       <label class="control-label">Published Date:</label>
       <div class="controls">
-        <input type="text" name="date" id="calendar" value="{$row.pubdate|default:''}" class="input-medium" maxlength="64" />
+        <input type="text" name="pubdate" id="calendar" value="{$row.pubdate|default:''}" class="input-medium" maxlength="64" placeholder="{$smarty.now|date_format:"%Y-%m-%d %T"}" />
       </div>
     </div>
 {* TODO: Filter picker

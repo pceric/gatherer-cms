@@ -98,7 +98,7 @@ MCE;
                           'tags' => $_POST['tags'],
                           'comments' => $this->_getParam('comments')==null?0:1,
                           'published' => $published,
-                          'pubdate' => new Zend_Db_Expr('NOW()'));
+                          'pubdate' => strlen($this->_getParam('pubdate',''))>0?$this->_getParam('pubdate'):new Zend_Db_Expr('NOW()'));
             $data['sticky'] = $this->_getParam('sticky')==null?0:1;
             $this->_db->insert('news', $data);
             $this->_setParam('id', $this->_db->lastInsertId());
@@ -174,6 +174,7 @@ MCE;
                         'comments' => $this->_getParam('comments')==null?0:1,
                         'sticky' => $this->_getParam('sticky')==null?0:1,
                         'published' => $published,
+                        'pubdate' => $this->_getParam('pubdate'),
                         'moddate' => $moddate);
             $this->_db->update('news', $data, 'id = ' . $this->_db->quote($this->_getParam('id')));
 

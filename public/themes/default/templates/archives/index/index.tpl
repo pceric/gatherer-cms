@@ -23,7 +23,7 @@ Sorry, no results for the year of {$year}.
 </div>
 {if isset($gcms.param.month)}
 <script type="text/javascript">
-    new Fx.Scroll(window).toElement('a-{$gcms.param.month}');
+    new Fx.Scroll(window, { offset: { x:0, y:-30 } }).toElement('a-{$gcms.param.month}');
 </script>
 {/if}
 {/nocache}

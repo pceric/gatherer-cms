@@ -47,7 +47,7 @@ INSERT INTO `articles` (`id`, `title`, `content`, `tags`, `comments`, `published
 
 CREATE TABLE IF NOT EXISTS `banners` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `client` int(10) unsigned DEFAULT NULL,
+  `client` int(10) unsigned NOT NULL,
   `size` varchar(16) NOT NULL DEFAULT '468x60',
   `image` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,

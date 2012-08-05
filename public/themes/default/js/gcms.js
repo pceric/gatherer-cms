@@ -57,7 +57,7 @@ var MooGCMS = new Class({
     loadTips: function(id) {
         var myTips = new Tips(id, {
             text:null,
-            className:'tooltip',
+            className:'tooltip-inner',
             onShow: function(tip, el){
                 tip.fade('in');
             },
@@ -69,6 +69,6 @@ var MooGCMS = new Class({
 });
 
 window.addEvent('domready', function(){
-    gcms.loadTips('.myTips');  // gcms is declared in <head>
+    gcms.loadTips('.mooTips');  // gcms is declared in <head>
     $$('#sidebar-navigation ul').each(function(el){ el.addClass('nav nav-list'); });
 });

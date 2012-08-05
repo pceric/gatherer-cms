@@ -230,7 +230,7 @@ MCE;
     {
         $view = Zend_Registry::get('view');
         $stack = array();
-        $stack[] = Zend_Registry::get('Zend_Translate')->_("Article Config");
+        $stack[] = Zend_Registry::get('Zend_Translate')->_("Article Management");
         $stack[$view->url(array('module' => 'article', 'controller' => 'admin', 'action' => 'add'), null, true)] = Zend_Registry::get('Zend_Translate')->_("Add New Article");
         $stack[$view->url(array('module' => 'article', 'controller' => 'admin', 'action' => 'index'), null, true)] = Zend_Registry::get('Zend_Translate')->_("Edit Articles");
         return $stack;

@@ -204,7 +204,7 @@ MCE;
     {
         $view = Zend_Registry::get('view');
         $stack = array();
-        $stack[] = Zend_Registry::get('Zend_Translate')->_("News Config");
+        $stack[] = Zend_Registry::get('Zend_Translate')->_("News Management");
         $stack[$view->url(array('module' => 'news', 'controller' => 'admin', 'action' => 'add'), null, true)] = Zend_Registry::get('Zend_Translate')->_("Add New News Post");
         $stack[$view->url(array('module' => 'news', 'controller' => 'admin', 'action' => 'index'), null, true)] = Zend_Registry::get('Zend_Translate')->_("Edit News Posts");
         return $stack;

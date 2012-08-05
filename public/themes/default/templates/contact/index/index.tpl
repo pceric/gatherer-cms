@@ -1,4 +1,6 @@
-<h1>Contact</h1>
+<div class="page-header">
+  <h1>Contact</h1>
+</div>
 <div id="contact">
 <form method="post" action="{$smarty.server.PHP_SELF}" class="form-horizontal">
   <fieldset>

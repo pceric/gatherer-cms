@@ -1,5 +1,7 @@
 {nocache}
-<h1>Tags - {$term|default:'[Uncategorized]'}</h1>
+<div class="page-header">
+  <h1>Tags - {$term|default:'[Uncategorized]'}</h1>
+</div>
 <div id="tags">
 {if count($data) < 1}<p>Sorry, nothing matching '{$term}'.</p>{/if}
 <ul>

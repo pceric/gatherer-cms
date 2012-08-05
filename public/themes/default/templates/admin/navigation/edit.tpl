@@ -4,7 +4,9 @@
   <li><a href="{$view->url(['module' => 'admin', 'controller' => 'navigation'],null,true)}">Navigation</a> <span class="divider">&gt;</span></li>
   <li class="active">{if isset($item.id)}Edit{else}Add{/if}</li>
 </ul>
-<h1>{if isset($item.id)}Editing '{$item.name}'{else}Add New Item{/if}</h1>
+<div class="page-header">
+  <h1>{if isset($item.id)}Editing '{$item.name}'{else}Add New Item{/if}</h1>
+</div>
 <form method="post" class="form-horizontal">
 <table>
 <tr><td>Name:</td><td><input type="text" name="name" value="{$item.name|default:''}" /></td></tr>

@@ -4,7 +4,9 @@
   <li><a href="{$view->url(['module' => 'article', 'controller' => 'admin'],null,true)}">Articles</a> <span class="divider">&gt;</span></li>
   <li class="active">{if isset($row.id)}Edit{else}Add{/if}</li>
 </ul>
-<h1>{if isset($row.id)}Edit{else}New{/if} {'Article'|translate}</h1>
+<div class="page-header">
+  <h1>{if isset($row.id)}Edit{else}New{/if} {'Article'|translate}</h1>
+</div>
 <form method="post" class="form-horizontal">
   <fieldset>
     <div class="control-group">

@@ -9,7 +9,9 @@
   <li><a href="{$view->url(['module' => 'admin'],null,true)}">Admin Home</a> <span class="divider">&gt;</span></li>
   <li class="active">Change Password</li>
 </ul>
-<h1>Change Password</h1>
+<div class="page-header">
+  <h1>Change Password</h1>
+</div>
 <form method="post" class="form-horizontal">
   <fieldset>
     <div class="control-group">

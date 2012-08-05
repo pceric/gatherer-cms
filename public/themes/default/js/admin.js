@@ -105,6 +105,17 @@ var MooGCMSAdmin = new Class({
             }
         });
         $$('input[name=published]').fireEvent('change');
+        // Banner type toggle
+        $$('#banner-type').addEvent('change', function(event) {
+            if (this[this.selectedIndex].value == 'img') {
+                $('banner-fs-custom').hide();
+                $('banner-fs-img').show();
+            } else {
+                $('banner-fs-custom').show();
+                $('banner-fs-img').hide();
+            }
+        });
+        $$('#banner-type').fireEvent('change');
     }
 });
 

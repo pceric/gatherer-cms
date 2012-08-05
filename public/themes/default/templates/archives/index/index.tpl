@@ -1,6 +1,8 @@
 {nocache}
 {$current_page=floor(array_search($year, $years)/5)}
-<h1>Archives</h1>
+<div class="page-header">
+  <h1>Archives</h1>
+</div>
 <div id="archives">
 <div class="pagination pagination-centered">
   <ul>

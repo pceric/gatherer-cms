@@ -31,7 +31,7 @@
   {/if}
   <table width="100%" border="0">
   <tr>
-    <td width="90%"><div id="addthis">{include file='addthis.tpl'}</div></td><td><a href="javascript:void(0)" class="myTips" title="{"Print"|translate}" onclick="window.open('{$view->url(['action' => 'print', 'id' => $gcms.param.id])}', 'print', 'status=0,menubar=1,scrollbars=1,width=800,height=600')"><i class="icon-print"></i></a></td>
+    <td width="90%"><div id="addthis">{include file='addthis.tpl'}</div></td><td><a href="javascript:void(0)" class="mooTips" title="{"Print"|translate}" onclick="window.open('{$view->url(['action' => 'print', 'id' => $gcms.param.id])}', 'print', 'status=0,menubar=1,scrollbars=1,width=800,height=600')"><i class="icon-print"></i></a></td>
   </tr>
   </table>
   <div class="meta">

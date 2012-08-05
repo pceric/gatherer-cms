@@ -8,7 +8,9 @@
 {/if}
 </div>
 {/if}
-<h1>{'Administration'|translate}</h1>
+<div class="page-header">
+  <h1>{'Administration'|translate}</h1>
+</div>
 <div>
   <h4 class="slide-toggle">Site Config</h4>
   <ul class="unstyled-simple">

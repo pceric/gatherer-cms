@@ -9,5 +9,7 @@
     <files>
         <filename>/modules/banner/setup.xml</filename>
         <filename>/modules/banner/controllers/AdminController.php
+        <filename>/modules/banner/controllers/RedirectController.php
+        <filename>/views/helpers/Banner.php
     </files>
 </module>

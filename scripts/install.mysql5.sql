@@ -57,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `impressions` int(10) unsigned NOT NULL DEFAULT '0',
   `startdate` datetime NOT NULL,
   `enddate` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `client_i` (`client`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -201,7 +202,9 @@ CREATE TABLE IF NOT EXISTS `reader` (
   `tags` varchar(255) DEFAULT NULL,
   `annotation` text,
   `pubdate` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `guid` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `guid_u` (`guid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

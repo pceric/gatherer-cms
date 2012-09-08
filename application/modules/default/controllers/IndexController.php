@@ -58,6 +58,8 @@ class IndexController extends Zend_Controller_Action
                         foreach ($json['items'] as $item) {
                             if ($item['verb'] != "post" || $item['object']['objectType'] != "note")
                                 continue;
+                            // Check for existing; update if found.
+                            $old = $this->_db->fetchRow('SELECT id,title,summary FROM reader WHERE guid = ?', $item['id']);
                             // Is this a re-shared post?
                             if (isset($item['object']['attachments'])) {
                                 $data = array('title' => $item['object']['attachments'][0]['displayName'],
@@ -72,10 +74,9 @@ class IndexController extends Zend_Controller_Action
                                 continue;
                             }
                             $data['pubdate'] = $zd->set($item['published'], Zend_Date::ISO_8601)->get(Zend_Date::ISO_8601);
-                            // Check for existing; update if found.
-                            $old = $this->_db->fetchOne('SELECT id FROM reader WHERE source = ?', $data['source']);
-                            if ($old) {
-                                $this->_db->update('reader', $data, 'id = ' . $old);
+                            $data['guid'] = $item['id'];
+                            if ($old && ($old['title'] != $data['title'] || $old['summary'] != $data['summary'])) {
+                                $this->_db->update('reader', $data, 'id = ' . $old['id']);
                             } else {
                                 $this->_db->insert('reader', $data);
                                 $search->addItem($data['title'], $data['summary'], $zd->set($data['pubdate'])->get(), '', 'news/index/index/type/reader/id/' . $this->_db->lastInsertId());
@@ -133,12 +134,14 @@ class IndexController extends Zend_Controller_Action
                                 $data['source'] = $item->link['href'];
                             $data['tags']      = rtrim($feedtags,',');
                             $data['pubdate'] = $zd->set($item->published(), Zend_Date::ATOM)->get(Zend_Date::ISO_8601);
+                            $data['guid'] = $item->id;
                         }
                         elseif ($feed instanceof Zend_Feed_Rss) {
                             $summary = $item->description();
                             $data['source']    = $item->link();
                             $data['tags']      = $item->category();
                             $data['pubdate'] = $zd->set($item->pubDate(), Zend_Date::RSS)->get(Zend_Date::ISO_8601);
+                            $data['guid'] = $item->guid;
                         }
                         else
                             trigger_error("Unknown feed type.  Must be valid RSS or ATOM.");

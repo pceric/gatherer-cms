@@ -260,7 +260,8 @@ CREATE TABLE reader (
     source character varying(255) NOT NULL,
     tags character varying(255),
     pubdate timestamp without time zone NOT NULL,
-    annotation text
+    annotation text,
+    guid character varying(128) DEFAULT NULL 
 );
 
 
@@ -465,6 +466,13 @@ ALTER TABLE ONLY news
 
 ALTER TABLE ONLY reader
     ADD CONSTRAINT reader_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: guid_u; Type: INDEX; Schema: public; Owner: - 
+--
+
+CREATE UNIQUE INDEX guid_u ON reader USING btree (guid);
 
 
 --

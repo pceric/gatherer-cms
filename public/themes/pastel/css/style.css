@@ -10,11 +10,11 @@ td {
     padding:5px 25px;
 }
 
-#content .gfeed h2.title,li.reader {
+#content .gfeed h3.title,li.reader {
     color: #EF9850;
 }
 
-#content .news h2.title,li.news {
+#content .news h3.title,li.news {
     color: #40BF40;
 }
 
@@ -43,7 +43,7 @@ td {
     border-left: 1px solid #E2E2E2;
 }
 
-#sidebar h2 {
+#sidebar h3 {
     color: #555;
 }
 
@@ -68,7 +68,7 @@ td {
 
 /* Footer */
 #footer {
-	height: 50px;
+	height: 40px;
 	margin: 0 auto;
 	padding: 0px 0 15px 0;
 	background: #47ABAB;
@@ -88,4 +88,13 @@ td {
 
 #footer a {
 	color: #5389E0;
+}
+
+.mask {
+    position: absolute;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+    z-index: 999;
+    background: #fff;
 }

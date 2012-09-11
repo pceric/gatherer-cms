@@ -17,6 +17,7 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
+          {nocache}
           <a class="brand" href="{$view->url(['module' => 'default'],null,true)}">{$gcms.config.sitename}</a>
           <ul class="nav">
             <li{if $gcms.param.module == 'default'} class="active"{/if}><a href="{$view->url(['module' => 'default'],null,true)}">Home</a></li>
@@ -24,7 +25,8 @@
             <li{if $gcms.param.module == 'article' && $gcms.param.id|default:0 == 1} class="active"{/if}><a href="{$view->url(['module' => 'article', 'id' => 1],null,true)}">About</a></li>
             <li{if $gcms.param.module == 'contact'} class="active"{/if}><a href="{$view->url(['module' => 'contact'],null,true)}">Contact</a></li>
           </ul>
-          {if $gcms.isAdmin nocache}<ul class="nav pull-right"><li><a href="{$view->url(['module' => 'admin'],null,true)}">Admin</a></li></ul>{/if}
+          {if $gcms.isAdmin}<ul class="nav pull-right"><li><a href="{$view->url(['module' => 'admin'],null,true)}">Admin</a></li></ul>{/if}
+          {/nocache}
         </div>
       </div>
     </div>
@@ -39,28 +41,30 @@
             <div class="span3 offset1">
               <div id="sidebar">
                 <div id="search">
-                  <form class="well form-search" onsubmit="return gcms.doSearch(this.s);">
-                    <input type="text" name="s" class="search-query input-small" placeholder="Search..." />
-                    <input type="submit" id="search-submit" class="btn" value="GO" />
+                  <form class="well well-small form-search" onsubmit="return gcms.doSearch(this.s);">
+                    <div class="input-append">
+                      <input type="text" name="s" class="search-query input-small" placeholder="Search..." />
+                      <button type="submit" class="btn" id="search-submit">GO</button>
+                    </div>
                   </form>
                 </div>
                 <div id="sidebar-syndication">
-                  <h2>Syndication</h2>
+                  <h3>Syndication</h3>
                     <ul>
                       <li><a href="{$view->baseUrl('feed.php?RSS')}"><img src="{$view->baseUrl('/themes/default/images/feed-icon-14x14.png')}" alt="RSS" />RSS</a></li>
                       <li><a href="{$view->baseUrl('feed.php')}"><img src="{$view->baseUrl('/themes/default/images/feed-icon-14x14.png')}" alt="ATOM" />ATOM</a></li>
                     </ul>
                 </div>
                 <div id="sidebar-navigation">
-                  <h2>Navigation</h2>
+                  <h3>Navigation</h3>
                   {$view->navigation()->menu() nocache}
                 </div>
                 <div id="sidebar-posts">
-                  <h2>My Recent Posts</h2>
+                  <h3>My Recent Posts</h3>
                   {$view->myPosts() nocache}
                 </div>
                 <div id="sidebar-archives">
-                  <h2>Archives</h2>
+                  <h3>Archives</h3>
                   {$view->archives() nocache}
                 </div>
               </div>

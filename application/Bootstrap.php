@@ -115,6 +115,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->headLink()->appendAlternate($view->baseUrl('feed.php?RSS'), 'application/rss+xml', 'RSS Feed');
         $view->headScript()->appendFile($view->baseUrl('themes/default/js/mootools-core-1.4.5-full-nocompat-yc.js'));
         $view->headScript()->appendFile($view->baseUrl('themes/default/js/mootools-more-1.4.0.1.js'));
+        $view->headScript()->appendFile($view->baseUrl('themes/default/js/moostrap.js'));
         $view->headScript()->appendFile($view->baseUrl('themes/default/js/gcms.js'));
         $view->headScript()->appendScript("var gcms = new MooGCMS({ baseUrl: '" . $view->baseUrl() . "' });");
         // Some admin specific config

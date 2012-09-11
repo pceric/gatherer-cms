@@ -3,7 +3,7 @@
 {if !empty($sticky)}
         <div class="sticky">
 {section name=sloop loop=$sticky nocache}
-            <h2 class="title">{$sticky[sloop].title}</h2>
+            <h3 class="title">{$sticky[sloop].title}</h3>
             <div class="entry">
                 <p><small>{$sticky[sloop].pubdate|date_format:"%c"} by {$gcms.config.siteauthor}<br />
                 {if !empty($sticky[sloop].moddate)}(Modified {$sticky[sloop].moddate|date_format:"%c"}){/if}</small></p>
@@ -18,7 +18,7 @@
 {* Now our regular posts *}
 {section name=floop loop=$feed nocache}
         {if $feed[floop].type == 'reader'}<div class="gfeed">{else}<div class="news">{/if}
-            <h2 class="title">{$feed[floop].title|truncate:50:"..."}</h2>
+            <h3 class="title">{$feed[floop].title|truncate:50:"..."}</h3>
             <div class="entry">
                 <p><small>{$feed[floop].pubdate|date_format:"%c"}{if !empty($feed[floop].source)} from {$feed[floop].source}{else} by {$gcms.config.siteauthor}{/if}<br />
                 {if !empty($feed[floop].moddate)}(Modified {$feed[floop].moddate|date_format:"%c"}){/if}</small></p>

@@ -56,12 +56,6 @@ var MooGCMSAdmin = new Class({
         */
     },
     initEvents: function(){
-        // Admin menu slide toggle
-        $$('[class*=slide-toggle]').addEvent('click', function(event){
-            if (this.retrieve('toggle') == null)
-                this.store('toggle', this.getNext());
-            new Fx.Slide(this.retrieve('toggle')).toggle();
-        });
         // Path checker
         $$('#imageuploaddir, #fileuploaddir').addEvent('change', function(event){
             //TODO: Check file path

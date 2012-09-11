@@ -134,14 +134,14 @@ class IndexController extends Zend_Controller_Action
                                 $data['source'] = $item->link['href'];
                             $data['tags']      = rtrim($feedtags,',');
                             $data['pubdate'] = $zd->set($item->published(), Zend_Date::ATOM)->get(Zend_Date::ISO_8601);
-                            $data['guid'] = $item->id;
+                            $data['guid'] = (empty($item->id)?sha1($data['source']):$item->id);
                         }
                         elseif ($feed instanceof Zend_Feed_Rss) {
                             $summary = $item->description();
                             $data['source']    = $item->link();
                             $data['tags']      = $item->category();
                             $data['pubdate'] = $zd->set($item->pubDate(), Zend_Date::RSS)->get(Zend_Date::ISO_8601);
-                            $data['guid'] = $item->guid;
+                            $data['guid'] = (empty($item->guid)?sha1($data['source']):$item->guid);
                         }
                         else
                             trigger_error("Unknown feed type.  Must be valid RSS or ATOM.");

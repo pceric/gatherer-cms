@@ -75,8 +75,10 @@ class IndexController extends Zend_Controller_Action
                             }
                             $data['pubdate'] = $zd->set($item['published'], Zend_Date::ISO_8601)->get(Zend_Date::ISO_8601);
                             $data['guid'] = $item['id'];
-                            if ($old && ($old['title'] != $data['title'] || $old['summary'] != $data['summary'])) {
-                                $this->_db->update('reader', $data, 'id = ' . $old['id']);
+                            if ($old) {
+                                if ($old['title'] != $data['title'] || $old['summary'] != $data['summary']) {
+                                    $this->_db->update('reader', $data, 'id = ' . $old['id']);
+                                }
                             } else {
                                 $this->_db->insert('reader', $data);
                                 $search->addItem($data['title'], $data['summary'], $zd->set($data['pubdate'])->get(), '', 'news/index/index/type/reader/id/' . $this->_db->lastInsertId());

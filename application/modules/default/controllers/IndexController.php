@@ -53,7 +53,15 @@ class IndexController extends Zend_Controller_Action
                 try {
                     $client = new Zend_Rest_Client('https://www.googleapis.com');
                     $response = $client->restGet('/plus/v1/people/' . $this->_config['plusid'] . '/activities/public', array('key' => $this->_config['plusapikey']));
-                    $json = json_decode($response->getBody(), true);
+                    if (($json = json_decode($response->getBody(), true)) === null) {
+                        throw new UnexpectedValueException();
+                    } else if (isset($json['error'])) {
+                        throw new Exception('[' . $json['error']['code'] . '] ' . $json['error']['message']);
+                    }
+                    // As per usual, Google broke this without warning and violated their own docs
+                    if (!isset($json['updated'])) {
+                        $json['updated'] = $zd->get(Zend_Date::ISO_8601);
+                    }
                     if ($zd->set($json['updated'], Zend_Date::ISO_8601)->get() > $this->_config['lastfetch']) {
                         foreach ($json['items'] as $item) {
                             if ($item['verb'] != "post" || $item['object']['objectType'] != "note")
@@ -88,6 +96,8 @@ class IndexController extends Zend_Controller_Action
                     }
                 } catch (Zend_Http_Client_Adapter_Exception $e) {
                     Zend_Registry::get('log')->log('Error connecting to Google+: ' . $e->getMessage(), Zend_Log::ERR);
+                } catch (Exception $e) {
+                    Zend_Registry::get('log')->log('A Google+ error occured: ' . $e->getMessage(), Zend_Log::ERR);
                 }
             } 
             elseif (!empty($this->_config['googlefeed'])) {

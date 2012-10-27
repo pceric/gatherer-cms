@@ -118,6 +118,14 @@ plugins and filters, to be used with GCMS.  GCMS includes a GeSHi filter
 when using HTML5 <code class="language-[supported lang here]"></code> notation.
 
 
+Troubleshooting
+===============
+You can toggle between development mode and production mode by editing the first
+line in the public/.htaccess file.  Development is much more verbose during errors.
+
+You may also find additional error messages in the data/logs/ directory.
+
+
 Community
 =========
 Code hosted on GitHub at github.com/pceric/gatherer-cms

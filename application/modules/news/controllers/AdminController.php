@@ -72,7 +72,7 @@ FCK;
                 theme_advanced_buttons3_add : "separator,visualchars,separator,fullscreen",
                 entity_encoding : "raw",
                 remove_linebreaks : false,
-                forced_root_block : ''
+                forced_root_block : false
             });
 MCE;
             $this->view->headScript()->captureEnd();

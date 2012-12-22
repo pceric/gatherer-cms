@@ -16,12 +16,12 @@ support for theming and addons.
 Requirements
 ============
 - Apache Web Server
-- PHP v5.2.4+ with the following libraries:
+- PHP v5.2.11+ with the following libraries:
   - mysql or pgsql
   - libxml
   - gd
   - tidy (optional)
-- Smarty v3.0.9+ and The Zend Framework v1.11.14+ installed w correct paths
+- Smarty v3.0.9+ and The Zend Framework v1.11.15+ installed w correct paths
   configured in your php.ini.  If you don't have access to php.ini, you may
   install them into the library directory and edit application/configs/application.ini.
 - Database Server (MySQL 5.0+ or PostgreSQL 9.0+ supported but any other DB

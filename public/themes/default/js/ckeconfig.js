@@ -3,18 +3,26 @@
 */
 
 CKEDITOR.editorConfig = function(config) {
+    config.docType = '<!DOCTYPE html>';
     config.entities = false;
     config.height = 400;
-    
+    config.contentsCss = [gcms.options.baseUrl + '/themes/' + gcms.options.theme + '/css/bootstrap.min.css'];
     config.toolbar = 
     [
-        ['Undo','Redo','-','Bold','Italic','Underline','Strike','-','Subscript','Superscript','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull','-','SpellChecker'],
+        { name: 'document', items : [ 'Source','-','Preview','Print','-','Templates' ] },
+        { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+        { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
+        { name: 'forms', items : [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
         '/',
-        ['Styles','Format','Font','-','RemoveFormat'],
+        { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+        { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+        { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+        { name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','Iframe' ] },
         '/',
-        ['NumberedList','BulletedList','-','Table','HorizontalRule','-','Outdent','Indent','-','Link','Unlink','-','Image','Flash','-','ShowBlocks','Source','-','Maximize','-','About']
+        { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+        { name: 'colors', items : [ 'TextColor','BGColor' ] },
+        { name: 'tools', items : [ 'Maximize', 'ShowBlocks','-','About' ] }
     ];
-    
     config.filebrowserImageUploadUrl = gcms.options.baseUrl + '/admin/upload/image';
 };
 

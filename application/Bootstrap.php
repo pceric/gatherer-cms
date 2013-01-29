@@ -117,7 +117,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->headScript()->appendFile($view->baseUrl('themes/default/js/mootools-more-1.4.0.1.js'));
         $view->headScript()->appendFile($view->baseUrl('themes/default/js/moostrap.js'));
         $view->headScript()->appendFile($view->baseUrl('themes/default/js/gcms.js'));
-        $view->headScript()->appendScript("var gcms = new MooGCMS({ baseUrl: '" . $view->baseUrl() . "' });");
+        $view->headScript()->appendScript("var gcms = new MooGCMS({ baseUrl: '" . $view->baseUrl() . "', theme: '" . $cfg['sitetheme'] . "' });");
         // Some admin specific config
         if (Zend_Registry::get('acl')->isAllowed('admin')) {
             $view->headScript()->appendFile($view->baseUrl('themes/default/js/inlineEdit.v3.js'));

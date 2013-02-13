@@ -11,6 +11,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Published</th>
       <th>Date</th>
       <th>&nbsp;</th>
     </tr>
@@ -18,6 +19,7 @@
   <tbody>
 {foreach from=$data item=v nocache}
     <tr><td><a href="{$view->url(['action' => 'edit', 'id' => $v.id])}">{$v.title}</a></td>
+    <td>{if $v.published}<i class="icon-ok"></i>{else}&nbsp;{/if}</td>
     <td>{$v.pubdate|date_format:'%x %X'}</td>
     <td><a href="{$view->url(['action' => 'delete', 'id' => $v.id])}" class="mooTips" onclick="return confirm('{'Really delete?'|translate}');" title="{'Delete'|translate}"><i class="icon-trash"></i></a></td></tr>
 {/foreach}

@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `links` (
 
 CREATE TABLE IF NOT EXISTS `menu` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL DEFAULT '',
+  `name` varchar(64) NOT NULL DEFAULT '',
   `link` text,
   `parent` int(10) unsigned DEFAULT NULL,
   `weight` smallint(5) NOT NULL DEFAULT '0',

@@ -172,7 +172,7 @@ CREATE TABLE config (
 
 CREATE TABLE menu (
     id integer NOT NULL,
-    name character varying(32) NOT NULL,
+    name character varying(64) NOT NULL,
     link text,
     parent integer,
     weight smallint DEFAULT 0 NOT NULL

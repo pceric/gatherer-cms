@@ -64,7 +64,7 @@ class IndexController extends Zend_Controller_Action
                     }
                     if ($zd->set($json['updated'], Zend_Date::ISO_8601)->get() > $this->_config['lastfetch']) {
                         foreach ($json['items'] as $item) {
-                            if ($item['verb'] != "post" || $item['object']['objectType'] != "note")
+                            if ($item['verb'] != 'post' || $item['object']['objectType'] != 'note' || $item['provider']['title'] != 'Google+')
                                 continue;
                             // Check for existing; update if found.
                             $old = $this->_db->fetchRow('SELECT id,title,summary FROM reader WHERE guid = ?', $item['id']);
